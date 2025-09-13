@@ -1,0 +1,33 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hemanth-05/Blog-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hemanth-05/Blog-API/issues"
+  },
+  "homepage": "https://github.com/Hemanth-05/Blog-API#readme",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.4.0",
+    "morgan": "^1.10.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-ejs": "^1.0.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
