@@ -40,6 +40,15 @@ export function update(id, updateData){
         return blogs[indexOfBlogToUpdate];
     }else{
         return null;
+    }   
+}
+
+export function deleteBlog(id){
+    let result = [...blogs];
+    const blogIdToBeDeleted = result.findIndex(blog => blog.id === id);
+    if(blogIdToBeDeleted === -1){
+        return false;
     }
-    
+    blogs.splice(blogIdToBeDeleted, 1);
+    return true;
 }

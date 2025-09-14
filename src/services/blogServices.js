@@ -1,4 +1,4 @@
-import {getAll, getId, create, update} from "../repositories/blogRepo.js"
+import {getAll, getId, create, update, deleteBlog} from "../repositories/blogRepo.js"
 
 export function getAllBlogs(query){
     return getAll(query);
@@ -36,5 +36,14 @@ export function updateBlogById(id, updateData){
         return updatedBlog;
     }else{
         return {error: `The blog with id: ${id} was not found`, statusCode: 404};
+    }
+}
+
+export function deleteBlogById(id){
+    const result = deleteBlog(id);
+    if(result){
+        return true
+    }else{
+        return {error: `id ${id} does not exist`, statusCode: 404}
     }
 }

@@ -1,4 +1,4 @@
-import { getAllBlogs, getBlogById, createBlog, updateBlogById } from "../services/blogServices.js";
+import { getAllBlogs, getBlogById, createBlog, updateBlogById, deleteBlogById } from "../services/blogServices.js";
 
 export function getAllBlogHandles(req, res) {
     const result = getAllBlogs(req.query);
@@ -35,5 +35,11 @@ export function updateBlogHandleById (req, res) {
 }
 
 export function deleteBlogHandleById (req, res) {
-    res.status(204).send();
+    const idOfTheBlogToBeDeleted = parseInt(req.params.id);
+    const deleteFunction = deleteBlogById(idOfTheBlogToBeDeleted);
+    if(!deleteFunction.error){
+        res.status(204).send();
+    }else{
+        res.status(deleteFunction.statusCode).json({"message": deleteFunction.error});
+    }
 }
