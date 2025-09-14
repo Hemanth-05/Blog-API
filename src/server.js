@@ -1,6 +1,5 @@
 import express from 'express';
 import morgan from 'morgan';
-
 import blogRoutes from './routes/blogRoutes.js'
 
 const PORT = 3000;

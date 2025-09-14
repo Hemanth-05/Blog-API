@@ -1,4 +1,4 @@
-import { getAllBlogs } from "../services/blogServices.js";
+import { getAllBlogs, getBlogById } from "../services/blogServices.js";
 
 export function getAllBlogHandles(req, res) {
     const result = getAllBlogs(req.query);
@@ -6,7 +6,9 @@ export function getAllBlogHandles(req, res) {
 }
 
 export function getBlogHandleById(req, res) {
-    res.status(200).json({message: `Sending Blog with the id: ${req.params.id}`});
+    const idEntered = parseInt(req.params.id);
+    const resultOfGetBlogById = getBlogById(idEntered);
+    res.status(200).json(resultOfGetBlogById);
 }
 
 export function createBlogHandle (req, res) {
