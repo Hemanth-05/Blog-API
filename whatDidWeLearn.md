@@ -41,3 +41,6 @@ If an error occurs, we know exactly which layer is responsible.
 - Easier debugging and testing  
 - More maintainable and scalable structure  
 - Easy to swap out or upgrade a layer (e.g., replace in-memory DB with MongoDB/Postgres)
+
+### 4. The importance of app.use(express.json()) middlewear
+ - This middlewear tells express "Hey, whenever a request comes in with a JSON body (e.g. from a POST, PUT, PATCH), please parse it and put the result into req.body”

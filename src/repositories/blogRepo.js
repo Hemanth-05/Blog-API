@@ -1,7 +1,7 @@
-import {blogs} from "../db/blogs.js";
-let result = [...blogs];
+import {blogs, getNextId} from "../db/blogs.js";
 
 export function getAll(query){
+    let result = [...blogs];
 
     if(query.title){
         result = result.filter(blog => blog.title.toLowerCase() === query.title.toLowerCase())
@@ -14,6 +14,15 @@ export function getAll(query){
 }
 
 export function getId(id){
+    let result = [...blogs];
     const blogById = result.find(blog => blog.id === id);
     return blogById;
+}
+
+export function create(blog){
+    const newId = getNextId();
+    const newBlog = {id: newId, ...blog}
+    blogs.push(newBlog);
+    console.log(blogs);
+    return newBlog;
 }
