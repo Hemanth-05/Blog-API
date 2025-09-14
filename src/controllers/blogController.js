@@ -1,4 +1,4 @@
-import { getAllBlogs, getBlogById, createBlog } from "../services/blogServices.js";
+import { getAllBlogs, getBlogById, createBlog, updateBlogById } from "../services/blogServices.js";
 
 export function getAllBlogHandles(req, res) {
     const result = getAllBlogs(req.query);
@@ -22,7 +22,16 @@ export function createBlogHandle (req, res) {
 }
 
 export function updateBlogHandleById (req, res) {
-    res.status(200).json({message: `Updated the blog with id: ${req.params.id}`})
+    const idToUpdate = parseInt(req.params.id);
+    const dataToBeUpdated = req.body;
+    const updatedResult = updateBlogById(idToUpdate, dataToBeUpdated);
+
+    if(!updatedResult.error){
+        res.status(200).json(updatedResult);
+    }else{
+        res.status(updatedResult.statusCode).json({"message": updatedResult.error});
+    }
+    
 }
 
 export function deleteBlogHandleById (req, res) {

@@ -26,3 +26,20 @@ export function create(blog){
     console.log(blogs);
     return newBlog;
 }
+
+export function update(id, updateData){
+    let result = [...blogs];
+    const currentTime = new Date();
+    const formattedDate = currentTime.toISOString().split("T")[0];
+
+    let indexOfBlogToUpdate = result.findIndex(blog => blog.id === id);
+
+    if(indexOfBlogToUpdate !== -1){
+        let newBlog = {...blogs[indexOfBlogToUpdate], ...updateData, updatedAt: formattedDate};
+        blogs[indexOfBlogToUpdate] = newBlog;
+        return blogs[indexOfBlogToUpdate];
+    }else{
+        return null;
+    }
+    
+}

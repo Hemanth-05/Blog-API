@@ -1,4 +1,4 @@
-import {getAll, getId, create} from "../repositories/blogRepo.js"
+import {getAll, getId, create, update} from "../repositories/blogRepo.js"
 
 export function getAllBlogs(query){
     return getAll(query);
@@ -25,4 +25,16 @@ export function createBlog(data){
         updatedAt:formattedDate
     };
     return create(blog);
+}
+
+export function updateBlogById(id, updateData){
+    if(!updateData || (!updateData.title && !updateData.content && !updateData.author)){
+        return {error: `No fields to update`, statusCode: 400};
+    }
+    const updatedBlog = update(id, updateData);
+    if(updatedBlog){
+        return updatedBlog;
+    }else{
+        return {error: `The blog with id: ${id} was not found`, statusCode: 404};
+    }
 }
