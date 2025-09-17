@@ -7,7 +7,9 @@ export function getAllBlogs(query){
 export function getBlogById(id){
     let result = getId(id);
     if(result === undefined){
-        result = {error: `The blog with id: ${id} doesn't exists`, statusCode: 404};
+        const error = new Error(`The field with id ${id} not found`);
+        error.status = 400;
+        throw error;
     }
     return result;
 }
@@ -28,22 +30,28 @@ export function createBlog(data){
 }
 
 export function updateBlogById(id, updateData){
-    if(!updateData || (!updateData.title && !updateData.content && !updateData.author)){
-        return {error: `No fields to update`, statusCode: 400};
+    if((!updateData) || (!updateData.title && !updateData.content && !updateData.author)){
+        const e = new Error(`No fields to update`);
+        e.status = 400;
+        throw e;
     }
     const updatedBlog = update(id, updateData);
     if(updatedBlog){
         return updatedBlog;
     }else{
-        return {error: `The blog with id: ${id} was not found`, statusCode: 404};
+        const err = new Error(`The blog with ${id} id was not found`);
+        err.status = 404;
+        throw err;
     }
 }
 
 export function deleteBlogById(id){
     const result = deleteBlog(id);
     if(result){
-        return true
+        return true;
     }else{
-        return {error: `id ${id} does not exist`, statusCode: 404}
+        const err = new Error(`The blog with ${id} id was not found`);
+        err.status = 404;
+        throw err;
     }
 }

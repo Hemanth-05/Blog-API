@@ -8,11 +8,7 @@ export function getAllBlogHandles(req, res) {
 export function getBlogHandleById(req, res) {
     const idEntered = parseInt(req.params.id);
     const resultOfGetBlogById = getBlogById(idEntered);
-    if(!resultOfGetBlogById.error){
-        res.status(200).json(resultOfGetBlogById);
-    } else{
-        res.status(resultOfGetBlogById.statusCode).json({message: resultOfGetBlogById.error});
-    }
+    res.status(200).json(resultOfGetBlogById);
 }
 
 export function createBlogHandle (req, res) {
@@ -25,21 +21,12 @@ export function updateBlogHandleById (req, res) {
     const idToUpdate = parseInt(req.params.id);
     const dataToBeUpdated = req.body;
     const updatedResult = updateBlogById(idToUpdate, dataToBeUpdated);
-
-    if(!updatedResult.error){
-        res.status(200).json(updatedResult);
-    }else{
-        res.status(updatedResult.statusCode).json({"message": updatedResult.error});
-    }
     
+    res.status(200).json(updatedResult);
 }
 
 export function deleteBlogHandleById (req, res) {
     const idOfTheBlogToBeDeleted = parseInt(req.params.id);
     const deleteFunction = deleteBlogById(idOfTheBlogToBeDeleted);
-    if(!deleteFunction.error){
-        res.status(204).send();
-    }else{
-        res.status(deleteFunction.statusCode).json({"message": deleteFunction.error});
-    }
+    res.status(204).send();
 }
