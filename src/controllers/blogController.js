@@ -1,7 +1,10 @@
 import { getAllBlogs, getBlogById, createBlog, updateBlogById, deleteBlogById } from "../services/blogServices.js";
+import {matchedData} from "express-validator";
 
 export function getAllBlogHandles(req, res) {
-    const result = getAllBlogs(req.query);
+    const query = matchedData(req);
+    console.log("Matched:", query);
+    const result = getAllBlogs(query);
     res.status(200).json(result);
 }
 
