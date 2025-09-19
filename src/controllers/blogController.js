@@ -16,6 +16,7 @@ export function getBlogHandleById(req, res) {
 
 export function createBlogHandle (req, res) {
     const data = req.body;
+    console.log("Create Blog Data", data);
     const blog = createBlog(data);
     res.status(201).json(blog);
 }
