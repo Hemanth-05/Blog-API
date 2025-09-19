@@ -3,11 +3,11 @@ import {blogs, getNextId} from "../db/blogs.js";
 export function getAll(query){
     let result = [...blogs];
     if(query.title){
-        result = result.filter(blog => blog.title.toLowerCase() === query.title.toLowerCase())
+        result = result.filter(blog => blog.title.toLowerCase() === query.title)
     }
 
-    if(query.content){
-        result = result.filter(blog => blog.content.toLowerCase().includes(query.content.toLowerCase()))
+    if(query.author){
+        result = result.filter(blog => blog.author.toLowerCase().includes(query.author))
     }
     if(query.isPublished !== undefined){
         result = result.filter( blog => blog.isPublished === query.isPublished)

@@ -1,11 +1,14 @@
 import express from 'express';
-import morgan from 'morgan';
 import blogRoutes from './routes/blogRoutes.js'
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
-app.use(morgan('tiny'));
+if(process.env.NODE_ENV === "development"){
+    const morganModule = await import('morgan');
+    const morgan = morganModule.default;
+    app.use(morgan('tiny'));
+}
 app.use(express.json());
 app.use("/api/blogs", blogRoutes);
 

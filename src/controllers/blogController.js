@@ -3,7 +3,6 @@ import {matchedData} from "express-validator";
 
 export function getAllBlogHandles(req, res) {
     const query = matchedData(req);
-    console.log("Matched:", query);
     const result = getAllBlogs(query);
     res.status(200).json(result);
 }
@@ -16,7 +15,6 @@ export function getBlogHandleById(req, res) {
 
 export function createBlogHandle (req, res) {
     const data = req.body;
-    console.log("Create Blog Data", data);
     const blog = createBlog(data);
     res.status(201).json(blog);
 }
@@ -31,6 +29,6 @@ export function updateBlogHandleById (req, res) {
 
 export function deleteBlogHandleById (req, res) {
     const idOfTheBlogToBeDeleted = parseInt(req.params.id);
-    const deleteFunction = deleteBlogById(idOfTheBlogToBeDeleted);
+    deleteBlogById(idOfTheBlogToBeDeleted);
     res.status(204).send();
 }
