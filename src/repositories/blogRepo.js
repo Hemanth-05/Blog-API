@@ -25,7 +25,6 @@ export function create(blog){
     const newId = getNextId();
     const newBlog = {id: newId, ...blog}
     blogs.push(newBlog);
-    console.log(blogs);
     return newBlog;
 }
 

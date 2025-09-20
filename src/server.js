@@ -1,5 +1,6 @@
 import express from 'express';
 import blogRoutes from './routes/blogRoutes.js'
+import categoryRoutes from './routes/categoryRoutes.js'
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -11,6 +12,7 @@ if(process.env.NODE_ENV === "development"){
 }
 app.use(express.json());
 app.use("/api/blogs", blogRoutes);
+app.use("/api/categories", categoryRoutes);
 
 app.use((req, res, next) => {
     const err = new Error(`Not Found`);
@@ -27,6 +29,6 @@ app.use((err, req, res, next) => {
     res.status(err.status).json({message: err.message});
 });
 
-app.listen(PORT, ()=>{
-    console.log(`Server is running in port ${PORT}`);
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+}
